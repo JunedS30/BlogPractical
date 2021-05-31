@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $blogs = DB::table('blogs')->get();
+    return view('welcome',['blogs' => $blogs]);
 });
+
+Auth::routes(['login' => true,'register' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/blogs', 'BlogController');

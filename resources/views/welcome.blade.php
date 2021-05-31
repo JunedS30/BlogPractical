@@ -20,10 +20,6 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
-            }
-
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -78,23 +74,34 @@
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
+        @extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="text-center mb-5">
+        <h2 class="display-20 display-md-18 display-lg-16">Site Blogs</h2>
+    </div>
+    <a href="{{ route('home')}}" class="btn btn-success">Dashboard</a>
+    <div class="row">
+    @foreach($blogs as $blogs_data)
+        <div class="col-lg-4 col-md-6 mb-2-6">
+            <article class="card card-style2">
+                <div class="card-img">
+                    <img class="rounded-top" src="https://via.placeholder.com/350x280/6A5ACD/000000" alt="...">
+                    <?php /* <img class="rounded-top" src="{{asset('/blog/'.$blogs_data->image)}}" alt="..."> */ ?>
+                    <div class="date">{{$blogs_data->start_Date}}</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="h5"><a href="#!">{{ $blogs_data->blog_Name }}</a></h3>
+                    <p class="display-30">{{ $blogs_data->blog_Description }}</p>
+                    <a href="#!" class="read-more">read more</a>
+                </div>
+            </article>
+        </div>
+    @endforeach
+    </div>
+</div>
+@endsection
     </body>
 </html>

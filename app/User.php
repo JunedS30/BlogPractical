@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_Name', 'last_Name', 'email', 'password', 'dob', 'image', 'role',
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
@@ -34,6 +34,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'dob' => 'date',
     ];
+
+    public function blogs(){
+        $this->hasMany(Blog::class,'created_By','id');
+    }
 }
